@@ -2,8 +2,45 @@
 #include <vector>
 #include "DebugMethods.h"
 #include "Djikstra.h"
+#include "CustomHeap.h"
 
 using namespace std;
+
+bool compare ( vector<int> a , vector<int> b ) {
+    if ( a[0] < b[0] )
+        return false; 
+    else if ( a[0] == b[0] and a[1] < b[1] )
+        return false;
+    return true;
+}
+
+void CustomHeapDriver() {
+    CustomHeap<vector<int>> temp  ( compare );
+    
+    vector<vector<int>> solution { 
+        {5,20,30},
+        {10,15,30},
+        {10,20,30}
+    };
+
+    vector<vector<int>> answer;
+
+    temp.push ( vector<int> { 10,20,30 } );
+    temp.push ( vector<int> { 5,20,30 } );
+    temp.push ( vector<int> { 10,15,30 } );
+
+    while ( not temp.empty() ) {
+        answer.push_back ( temp.top() );
+        temp.pop();
+    }
+
+    if ( answer == solution )
+        cout << "Custom Heap test passed "<< endl ;
+    else 
+        cout << "Custom heap test failed" << endl ;
+
+    return;
+}
 
 void DjikstraDriver () {
     
@@ -29,9 +66,9 @@ void DjikstraDriver () {
     printVector<int> ( solution );
 
     if ( solution == return_value )
-        cout << "TEST PASSED SUCCESFULLY" << endl ;
+        cout << "Djikstra test passed " << endl ;
     else 
-        cout << "TEST FAILED" << endl ;
+        cout << "Djikstra test failed " << endl ;
 
     return ;
 }   
