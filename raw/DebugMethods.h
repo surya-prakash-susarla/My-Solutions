@@ -20,3 +20,13 @@ void printBasicQueue ( queue < container_type > input ) {
     cout << endl ;
     return;
 }
+
+template < typename q_container >
+void printQueue ( q_container input ) {
+    while ( not input.empty() ) {
+        cout << input.top () << " " ;
+        input.pop();
+    }
+    cout << endl ;
+    return;
+}
