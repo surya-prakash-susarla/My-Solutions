@@ -9,7 +9,8 @@
 			"*.ejs": "html",
 			"vector": "cpp",
 			"iostream": "cpp",
-			"ostream": "cpp"
+			"ostream": "cpp",
+			"limits": "cpp"
 		}
 	}
 }
