@@ -11,21 +11,15 @@ public:
                 calc ( i , visited , input );
         return;
     }
-    
-    int getIndex ( const vector<bool>& visited ) {
-        for ( int i=0 ; i<visited.size() ; i++ )
-            if ( not visited[i] )   return i ;
-        return -1;
-    }
-    
+        
     int findCircleNum(vector<vector<int>>& input ) {
         vector<bool> visited ( input.size() , false );
-        int answer = 0 , init = getIndex ( visited ) ;
-        while ( init != -1 ) {
-            calc ( init , visited , input );
-            answer ++ ;
-            init = getIndex ( visited );
-        }
+        int answer = 0 ;
+        for ( int i=0 ; i<input.size() ; i++ )
+            if ( not visited[i] ) {
+                answer++ ; 
+                calc ( i , visited , input );
+            }
         return answer;
     }
 };
