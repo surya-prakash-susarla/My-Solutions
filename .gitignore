@@ -1,4 +1,5 @@
-.vscode/
+.vscode/ipch
+raw/.vscode/ipch
 a.exe
 a.out
 sample_input.in

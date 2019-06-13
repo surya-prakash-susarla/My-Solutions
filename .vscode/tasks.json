@@ -1,0 +1,92 @@
+{
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "Build C++ file",
+      "command": "g++",
+      "args": [
+        "${workspaceFolder}\\${fileBasename}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": true
+      },
+      "promptOnClose": true,
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "type": "shell",
+      "label": "Run C++ file",
+      "command": "${workspaceFolder}\\a.exe",
+      "dependsOn": [
+        "Build C++ file"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": true
+      }
+    },
+    {
+      "type": "shell",
+      "label": "Run C++ file - output to console",
+      "command": "${workspaceFolder}\\a.exe < input.in",
+      "dependsOn": [
+        "Build C++ file"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": true
+      }
+    },
+    {
+      "type": "shell",
+      "label": "Run C++ file - output to file",
+      "command": "${workspaceFolder}\\a.exe < input.in > output.out",
+      "dependsOn": [
+        "Build C++ file"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": true
+      }
+    }
+  ],
+  "version": "2.0.0"
+}
