@@ -10,7 +10,9 @@
 			"vector": "cpp",
 			"iostream": "cpp",
 			"ostream": "cpp",
-			"limits": "cpp"
+			"limits": "cpp",
+			"*.tcc": "cpp",
+			"*.tpp": "cpp"
 		}
 	}
 }
