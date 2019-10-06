@@ -1,3 +1,5 @@
+// Easy one yet not the fastest implementation
+
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
