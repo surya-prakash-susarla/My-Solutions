@@ -1,3 +1,1 @@
-# Competitive Solutions
-
-Repo for my recent solutions to algorithms problems on LeetCode , Hackerrank etc.
+# MY CATALOG OF SOLUTIONS TO TRACK RANDOM THINGS I SOLVE
