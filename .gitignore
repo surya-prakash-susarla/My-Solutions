@@ -1,13 +1,12 @@
-.vscode/ipch
+**/.vscode/*
 raw/.vscode/ipch
-a.exe
+**/a.exe
 a.out
 sample_input.in
 sample_output.out
-temp.cpp
-temp2.cpp
+**/temp*.cpp
 sample_input_temp.in
-input.in
+**/input.in
 raw/a.exe
 raw/temp.cpp 
 raw/temp.h
