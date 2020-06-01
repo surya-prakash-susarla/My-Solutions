@@ -12,7 +12,9 @@
 			"ostream": "cpp",
 			"limits": "cpp",
 			"*.tcc": "cpp",
-			"*.tpp": "cpp"
+			"*.tpp": "cpp",
+			"unordered_map": "cpp",
+			"unordered_set": "cpp"
 		}
 	}
 }
