@@ -16,21 +16,24 @@ std::vector<llint> __calc__ () {
 	
 	llint only_a = a - c ;
 	llint only_b = b - c ;
-	llint empty = n - ( a + b + c );
+	llint empty = n - ( only_a + only_b + c );
 
-	if ( n - ( only_a + only_b ) > c )
+	if ( n - ( only_a + only_b ) < c )
 		return std::vector<llint>();
 	
+	if ( c == 1 && only_a == 0 && only_b == 0 && empty > 0)
+		return std::vector<llint>();
+
 	std::vector<llint> answer ( n , COMMON );
 	for ( llint i=0 ; i<only_a ; i++ )
 		answer[i] = A_VISIT ; 
-	for ( llint i=only_b ; i<n ; i++ )
+	for ( llint i=n-only_b ; i<n ; i++ )
 		answer[i] = B_VISIT ;
 
 	llint start_limit = only_a ; 
-	llint end_limit = only_b - 1 ;
+	llint end_limit = only_b > 0 ? n - only_b - 1 : n - 1;
 	
-	if ( only_b == n ){
+	if ( only_b == 0 ){
 		llint i = end_limit - 1 ; 
 		while ( empty-- > 0 )
 			answer[i--] = INVIS;
