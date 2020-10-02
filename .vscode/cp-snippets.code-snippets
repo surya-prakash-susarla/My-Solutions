@@ -1,0 +1,74 @@
+{
+	// stl function snippets
+	"vec_input" : {
+		"scope": "cpp",
+		"description": "take input into vector",
+		"prefix": "vec_input",
+		"body": [
+			"for(int ${1:i}=0 ; temp_variable < ${2:n} ; ${1:i}++)",
+			"cin >> ${3:input}[${1:i}];",
+			"$0"
+		]
+	},
+	"sort" : {
+		"scope": "cpp",
+		"description": "sort elements inside container",
+		"prefix": "sort",
+		"body": [
+			"sort(${1:input}.begin() , ${1:input}.end());",
+			"$0"
+		]
+	},
+	"fill" : {
+		"scope": "cpp",
+		"description": "fill elements of container",
+		"prefix": "fill",
+		"body": [
+			"fill(${1:input}.begin(),${1:input}.end(),${2:value});",
+			"$0"
+		]
+	},
+	"sum" : {
+		"scope": "cpp",
+		"description": "find sum of elements in container",
+		"prefix": "sum",
+		"body": [
+			"${1} ${2:result} = accumulate ( ${3:input}.begin() , ${3:input}.end() , ${4:start});",
+			"$0",
+		]
+	}
+
+	"codeforces_boilerplate": {
+		"scope": "cpp",
+		"description": "boilerplate code for codeforces submissions",
+		"prefix": "codeforces",
+		"body": [
+			"#include <iostream>",
+			"#include <vector>",
+			"#include <algorithm>",
+			"#include <numeric>",
+			"#include <limits>",
+			"#include <utility>",
+			"#include <map>",
+			"#include <stack>",
+			"#include <memory>",
+			"#include <cmath>",
+			"",
+			"using namespace std;",
+			"",
+			"typedef long long int llint;",
+			"typedef long double ldouble;",
+			"",
+			"",
+			"",
+			"int main(){",
+			"\tllint t;",
+			"\tcin >> t;",
+			"\tfor(llint i=0;i<t;i++){",
+			"\t\t$0",
+			"\t}",
+			"\treturn 0;",
+			"}"
+		]
+	}
+}
