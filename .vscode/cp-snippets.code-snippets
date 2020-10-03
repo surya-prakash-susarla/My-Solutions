@@ -81,7 +81,39 @@
 			"\t\t$0",
 			"\t}",
 			"\treturn 0;",
-			"}"
+			"}",
+			""
+		]
+	},
+
+	"cpp": {
+		"scope": "cpp",
+		"description": "basic cpp program",
+		"prefix": "cpp",
+		"body": [
+			"#include <iostream>",
+			"#include <vector>",
+			"#include <algorithm>",
+			"#include <numeric>",
+			"#include <limits>",
+			"#include <utility>",
+			"#include <map>",
+			"#include <stack>",
+			"#include <memory>",
+			"#include <cmath>",
+			"",
+			"using namespace std;",
+			"",
+			"typedef long long int llint;",
+			"typedef long double ldouble;",
+			"",
+			"",
+			"",
+			"int main(){",
+			"\t$0",
+			"\treturn 0;",
+			"}",
+			""
 		]
 	}
 }
