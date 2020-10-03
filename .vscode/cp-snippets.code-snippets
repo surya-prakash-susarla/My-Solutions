@@ -5,8 +5,8 @@
 		"description": "take input into vector",
 		"prefix": "vec_input",
 		"body": [
-			"for(int ${1:i}=0 ; temp_variable < ${2:n} ; ${1:i}++)",
-			"cin >> ${3:input}[${1:i}];",
+			"for(int ${1:i}=0 ; ${1:i} < ${2:n} ; ${1:i}++)",
+			"\tcin >> ${3:input}[${1:i}];",
 			"$0"
 		]
 	},
@@ -36,7 +36,20 @@
 			"${1} ${2:result} = accumulate ( ${3:input}.begin() , ${3:input}.end() , ${4:start});",
 			"$0",
 		]
-	}
+	},
+	"print_container" : {
+		"scope": "cpp", 
+		"description": "print contents of container using cout",
+		"prefix": "print",
+		"body": [
+			"void __print__ (const ${1:vector<llint>}& ${2:input}) { ",
+			"\tfor ( const auto& i : ${2:input} )",
+			"\t\tcout << i << \" \";",
+			"\treturn;",
+			"}",
+			"$0"
+		]
+	},
 
 	"codeforces_boilerplate": {
 		"scope": "cpp",
