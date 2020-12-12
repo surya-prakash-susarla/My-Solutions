@@ -17,6 +17,7 @@ typedef long double ldouble;
 template<typename T>
 using vec = std::vector<T>;
 
+// Problem : https://leetcode.com/problems/reducing-dishes/
 
 class Solution {
 public:
