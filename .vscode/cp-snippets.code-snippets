@@ -50,7 +50,6 @@
 			"$0"
 		]
 	},
-
 	"codeforces_boilerplate": {
 		"scope": "cpp",
 		"description": "boilerplate code for codeforces submissions",
@@ -114,6 +113,40 @@
 			"\treturn 0;",
 			"}",
 			""
+		]
+	},
+
+	"leet": {
+		"scope": "cpp",
+		"description": "leetcode boilerplate",
+		"prefix": "leet",
+		"body": [
+			"#include <iostream>",
+			"#include <vector>",
+			"#include <algorithm>",
+			"#include <numeric>",
+			"#include <limits>",
+			"#include <utility>",
+			"#include <map>",
+			"#include <stack>",
+			"#include <memory>",
+			"#include <cmath>",
+			"",
+			"",
+			"typedef long long int llint;",
+			"typedef long double ldouble;",
+			"",
+			"",
+			"class Solution{",
+			"public:",
+			"",
+			"};",
+			"",
+			"int main(){",
+			"\t$0",
+			"\treturn 0;",
+			"}",
+			""			
 		]
 	}
 }
