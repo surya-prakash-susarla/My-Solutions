@@ -9,6 +9,8 @@
 #include <utility>
 #include <vector>
 
+https://leetcode.com/problems/minimum-initial-energy-to-finish-tasks/submissions/
+
 // typedef long long int llint;
 typedef long double ldouble;
 
