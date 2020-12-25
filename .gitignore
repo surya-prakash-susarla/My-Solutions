@@ -6,6 +6,7 @@ sample_output.out
 **/temp*.cpp
 sample_input_temp.in
 **/input*.in
+**/*.out
 raw/a.exe
 raw/temp.cpp 
 raw/temp.h
