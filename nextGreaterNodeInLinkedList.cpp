@@ -9,32 +9,31 @@ using namespace std;
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
-#define node ListNode 
+#define node ListNode
 
 class Solution {
-public:
-    
-    vector<int> answer ;
-    
-    void calc ( node* root , int depth ) {
-        if ( root == NULL ) {
-            answer.resize ( depth , 0 );
-            return;   
-        }
-        calc ( root->next , depth+1 );
-        node* temp = root ;
-        while ( temp != NULL ) {
-            if ( temp->val > root->val ) {
-                answer[depth] = temp->val ;
-                break ;
-            }
-            temp = temp->next ;
-        }
-        return;
+ public:
+  vector<int> answer;
+
+  void calc(node* root, int depth) {
+    if (root == NULL) {
+      answer.resize(depth, 0);
+      return;
     }
-    
-    vector<int> nextLargerNodes(ListNode* head) {
-        calc ( head , 0 );
-        return answer ;
+    calc(root->next, depth + 1);
+    node* temp = root;
+    while (temp != NULL) {
+      if (temp->val > root->val) {
+        answer[depth] = temp->val;
+        break;
+      }
+      temp = temp->next;
     }
+    return;
+  }
+
+  vector<int> nextLargerNodes(ListNode* head) {
+    calc(head, 0);
+    return answer;
+  }
 };

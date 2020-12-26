@@ -11,24 +11,24 @@ using namespace std;
  * };
  */
 
-#define node TreeNode 
+#define node TreeNode
 
 class Solution {
-public:
-    
-    int answer = -1 , level = -1 ;
-    
-    void calc ( node* root , int depth ) {
-        if ( root == NULL ) return;
-        if ( depth > level ) 
-            level = depth , answer = root->val ;
-        calc ( root->left , depth+1 );
-        calc ( root->right , depth+1 );
-        return;
-    }
-    
-    int findBottomLeftValue(TreeNode* root) {
-        calc ( root , 0 );
-        return answer ;
-    }
+ public:
+  int answer = -1, level = -1;
+
+  void calc(node* root, int depth) {
+    if (root == NULL)
+      return;
+    if (depth > level)
+      level = depth, answer = root->val;
+    calc(root->left, depth + 1);
+    calc(root->right, depth + 1);
+    return;
+  }
+
+  int findBottomLeftValue(TreeNode* root) {
+    calc(root, 0);
+    return answer;
+  }
 };

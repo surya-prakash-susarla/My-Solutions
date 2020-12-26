@@ -10,22 +10,21 @@ using namespace std;
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
-#define node TreeNode 
+#define node TreeNode
 
 class Solution {
-public:
-    
-    int setWeight ( node* root , int prev_sum ) {
-        if ( root == NULL )
-            return prev_sum;
-        int right_sum = setWeight ( root->right , prev_sum );
-        root->val += right_sum ;
-        int left_sum = setWeight ( root->left , root->val );
-        return left_sum ;
-    }
-    
-    TreeNode* bstToGst(TreeNode* root) {
-        setWeight ( root , 0 );
-        return root ;
-    }
+ public:
+  int setWeight(node* root, int prev_sum) {
+    if (root == NULL)
+      return prev_sum;
+    int right_sum = setWeight(root->right, prev_sum);
+    root->val += right_sum;
+    int left_sum = setWeight(root->left, root->val);
+    return left_sum;
+  }
+
+  TreeNode* bstToGst(TreeNode* root) {
+    setWeight(root, 0);
+    return root;
+  }
 };
