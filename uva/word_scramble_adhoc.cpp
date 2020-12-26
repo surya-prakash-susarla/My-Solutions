@@ -12,7 +12,8 @@
 #define in scanf
 #define out printf
 
-// Problem: https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=424
+// Problem:
+// https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=424
 
 typedef long long int llint;
 typedef long double ldouble;

@@ -15,12 +15,14 @@
 typedef long long int llint;
 typedef long double ldouble;
 
-// Problem: https://onlinejudge.org/index.php?option=onlinejudge&Itemid=8&page=show_problem&problem=36
+// Problem:
+// https://onlinejudge.org/index.php?option=onlinejudge&Itemid=8&page=show_problem&problem=36
 
 std::map<llint, llint> mem;
 
 llint __calc__(llint input) {
-  if (input == 1) return 1;
+  if (input == 1)
+    return 1;
   llint& stored = mem[input];
   if (stored == 0) {
     if (input % 2 == 1)

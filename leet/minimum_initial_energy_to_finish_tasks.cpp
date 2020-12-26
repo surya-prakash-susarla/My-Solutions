@@ -9,10 +9,11 @@
 #include <utility>
 #include <vector>
 
-https://leetcode.com/problems/minimum-initial-energy-to-finish-tasks/submissions/
+https
+    :  // leetcode.com/problems/minimum-initial-energy-to-finish-tasks/submissions/
 
-// typedef long long int llint;
-typedef long double ldouble;
+       // typedef long long int llint;
+       typedef long double ldouble;
 
 class Solution {
  public:
@@ -27,7 +28,8 @@ class Solution {
                   return t1 > t2;
               });
     int starting_value = 0;
-    for (const std::vector<int> i : values) starting_value += i[0];
+    for (const std::vector<int> i : values)
+      starting_value += i[0];
     int bkup = starting_value, adds = 0;
     for (const std::vector<int> i : values) {
       if (bkup >= i[1]) {

@@ -18,7 +18,9 @@ typedef long double ldouble;
 
 class Solution {
  public:
-  int __rec__(int index, int current_value, std::map<char, int> lm,
+  int __rec__(int index,
+              int current_value,
+              std::map<char, int> lm,
               const std::vector<std::pair<std::map<char, int>, int>>& wm) {
     if (index == wm.size()) {
       return current_value;
@@ -41,7 +43,8 @@ class Solution {
     }
   }
 
-  int maxScoreWords(std::vector<std::string>& words, std::vector<char>& letters,
+  int maxScoreWords(std::vector<std::string>& words,
+                    std::vector<char>& letters,
                     std::vector<int>& scores) {
     std::map<char, int> lm;
     std::for_each(letters.begin(), letters.end(),
@@ -96,9 +99,12 @@ int main() {
   std::vector<char> letters(count_letters);
   std::vector<int> scores(26);
   std::cout << "in : data -> words -> letters " << std::endl;
-  for (int i = 0; i < count_words; i++) std::cin >> words[i];
-  for (int i = 0; i < count_letters; i++) std::cin >> letters[i];
-  for (int i = 0; i < 26; i++) std::cin >> scores[i];
+  for (int i = 0; i < count_words; i++)
+    std::cin >> words[i];
+  for (int i = 0; i < count_letters; i++)
+    std::cin >> letters[i];
+  for (int i = 0; i < 26; i++)
+    std::cin >> scores[i];
   Solution temp;
   std::cout << "Answer : " << temp.maxScoreWords(words, letters, scores)
             << std::endl;

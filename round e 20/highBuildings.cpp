@@ -1,91 +1,89 @@
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 #include <vector>
 
 typedef long long int llint;
 
-llint n , a , b , c ;
+llint n, a, b, c;
 
-constexpr llint A_VISIT = -1 ; 
-constexpr llint B_VISIT = -2 ;
-constexpr llint INVIS = -3 ;
-constexpr llint COMMON = -4 ;
+constexpr llint A_VISIT = -1;
+constexpr llint B_VISIT = -2;
+constexpr llint INVIS = -3;
+constexpr llint COMMON = -4;
 
-std::vector<llint> __calc__ () {
-	std::cin >> n >> a >> b >> c ;
-	
-	llint only_a = a - c ;
-	llint only_b = b - c ;
-	llint empty = n - ( only_a + only_b + c );
+std::vector<llint> __calc__() {
+  std::cin >> n >> a >> b >> c;
 
-	if ( n - ( only_a + only_b ) < c )
-		return std::vector<llint>();
-	
-	if ( c == 1 && only_a == 0 && only_b == 0 && empty > 0)
-		return std::vector<llint>();
+  llint only_a = a - c;
+  llint only_b = b - c;
+  llint empty = n - (only_a + only_b + c);
 
-	std::vector<llint> answer ( n , COMMON );
-	for ( llint i=0 ; i<only_a ; i++ )
-		answer[i] = A_VISIT ; 
-	for ( llint i=n-only_b ; i<n ; i++ )
-		answer[i] = B_VISIT ;
+  if (n - (only_a + only_b) < c)
+    return std::vector<llint>();
 
-	llint start_limit = only_a ; 
-	llint end_limit = only_b > 0 ? n - only_b - 1 : n - 1;
-	
-	if ( only_b == 0 ){
-		llint i = end_limit - 1 ; 
-		while ( empty-- > 0 )
-			answer[i--] = INVIS;
-	} else {
-		llint i = start_limit + 1 ;
-		while ( empty-- > 0 )
-			answer[i++ ] = INVIS;
-	}
+  if (c == 1 && only_a == 0 && only_b == 0 && empty > 0)
+    return std::vector<llint>();
 
-	llint common_height = n ; 
-	llint ind_height = n-1 ; 
-	llint invis = n-2 ;
+  std::vector<llint> answer(n, COMMON);
+  for (llint i = 0; i < only_a; i++)
+    answer[i] = A_VISIT;
+  for (llint i = n - only_b; i < n; i++)
+    answer[i] = B_VISIT;
 
-	for ( llint &i : answer ){
-		if ( i == A_VISIT || i == B_VISIT )
-			i = ind_height ;
-		else if ( i == COMMON )
-			i = common_height ;
-		else 
-			i = invis ;
-	}
+  llint start_limit = only_a;
+  llint end_limit = only_b > 0 ? n - only_b - 1 : n - 1;
 
-	return answer;
-}	
+  if (only_b == 0) {
+    llint i = end_limit - 1;
+    while (empty-- > 0)
+      answer[i--] = INVIS;
+  } else {
+    llint i = start_limit + 1;
+    while (empty-- > 0)
+      answer[i++] = INVIS;
+  }
 
+  llint common_height = n;
+  llint ind_height = n - 1;
+  llint invis = n - 2;
 
-void __print__ ( std::vector<llint> answer ) {
-	if ( answer.empty() ){
-		std::cout << "IMPOSSIBLE" ; 
-		return;
-	}
-	for ( llint i=0 ; i<n ; i++ ){
-		std::cout << answer[i] ; 
-		if ( i < n-1 )
-			std::cout <<  " " ;
-	}
-	return;
+  for (llint& i : answer) {
+    if (i == A_VISIT || i == B_VISIT)
+      i = ind_height;
+    else if (i == COMMON)
+      i = common_height;
+    else
+      i = invis;
+  }
+
+  return answer;
 }
 
+void __print__(std::vector<llint> answer) {
+  if (answer.empty()) {
+    std::cout << "IMPOSSIBLE";
+    return;
+  }
+  for (llint i = 0; i < n; i++) {
+    std::cout << answer[i];
+    if (i < n - 1)
+      std::cout << " ";
+  }
+  return;
+}
 
-int main(){
-	llint t;
-	std::cin >> t;
-	for ( llint i=1 ; i<=t ; i++ ){
-		std::vector<llint> answer = __calc__ ();
+int main() {
+  llint t;
+  std::cin >> t;
+  for (llint i = 1; i <= t; i++) {
+    std::vector<llint> answer = __calc__();
 
-		std::cout << "Case #" << i << ": " ;	
+    std::cout << "Case #" << i << ": ";
 
-		__print__ ( answer ) ; 
+    __print__(answer);
 
-		if ( i < t )
-			std::cout << std::endl;
-	}
-	return 0;
+    if (i < t)
+      std::cout << std::endl;
+  }
+  return 0;
 }

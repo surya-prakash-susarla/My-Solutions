@@ -15,7 +15,8 @@
 typedef long long int llint;
 typedef long double ldouble;
 
-// Problem: https://onlinejudge.org/index.php?option=onlinejudge&Itemid=8&page=show_problem&problem=208
+// Problem:
+// https://onlinejudge.org/index.php?option=onlinejudge&Itemid=8&page=show_problem&problem=208
 
 int main() {
   std::ios_base::sync_with_stdio(false);
@@ -23,17 +24,18 @@ int main() {
   bool left = true;
   while (std::getline(std::cin, input)) {
     // std::cout << "LINE:" << input << "\n";
-    for ( const char c : input ){
-      if ( c == '\"' ){
-        if ( left )
+    for (const char c : input) {
+      if (c == '\"') {
+        if (left)
           std::cout << "``";
-        else 
+        else
           std::cout << "''";
         left = not left;
       } else {
-        std::cout << c ;
-      }}
-      std::cout << "\n";
+        std::cout << c;
+      }
+    }
+    std::cout << "\n";
   }
   return 0;
 }

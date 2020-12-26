@@ -12,7 +12,8 @@
 #define in scanf
 #define out printf
 
-// Problem: https://onlinejudge.org/index.php?option=onlinejudge&Itemid=8&page=show_problem&problem=330
+// Problem:
+// https://onlinejudge.org/index.php?option=onlinejudge&Itemid=8&page=show_problem&problem=330
 
 typedef long long int llint;
 typedef long double ldouble;
@@ -94,7 +95,8 @@ int main() {
     for (llint j = 0; j < dim; j++) {
       std::cin >> current_indices[j];
       std::cout << current_indices[j];
-      if (j < dim - 1) std::cout << ", ";
+      if (j < dim - 1)
+        std::cout << ", ";
     }
     std::cout << "] = " << __calc__() << "\n";
   }

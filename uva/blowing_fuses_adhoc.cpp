@@ -12,7 +12,8 @@
 #define in scanf
 #define out printf
 
-// Problem: https://onlinejudge.org/index.php?option=onlinejudge&Itemid=8&page=show_problem&problem=602
+// Problem:
+// https://onlinejudge.org/index.php?option=onlinejudge&Itemid=8&page=show_problem&problem=602
 
 typedef long long int llint;
 typedef long double ldouble;
@@ -27,7 +28,7 @@ std::pair<bool, int> __calc__(const int n, const int m, const int c) {
   }
   // std::cout << "----value of caps : " << std::endl;
   // for ( llint i=0 ; i<caps.size() ; i++ )
-  //   std::cout << caps[i] << " " ; 
+  //   std::cout << caps[i] << " " ;
   // std::cout << std::endl;
   std::vector<bool> us(n, false);
   bool failed = false;
@@ -35,7 +36,7 @@ std::pair<bool, int> __calc__(const int n, const int m, const int c) {
   for (llint i = 0; i < m; i++) {
     std::cin >> temp;
     // std::cout << "value of m  : " << temp << std::endl;
-    if ( failed ){
+    if (failed) {
       continue;
     }
     temp -= 1;
@@ -54,7 +55,7 @@ std::pair<bool, int> __calc__(const int n, const int m, const int c) {
       maxval = std::max(maxval, current_usage);
     }
   }
-  if ( failed ){
+  if (failed) {
     return {false, -1};
   }
   return {true, maxval};
@@ -73,8 +74,8 @@ int main() {
     const std::pair<bool, llint>& answer = __calc__(n, m, c);
     std::cout << "Sequence " << t++ << "\nFuse was ";
     if (answer.first) {
-      std::cout << "not blown.\nMaximal power consumption was "
-                << answer.second << " amperes.\n";
+      std::cout << "not blown.\nMaximal power consumption was " << answer.second
+                << " amperes.\n";
     } else {
       std::cout << "blown.\n";
     }
