@@ -82,7 +82,9 @@
 			"typeinfo": "cpp",
 			"valarray": "cpp",
 			"variant": "cpp"
-		}
+		},
+		"workbench.panel.defaultLocation": "left",
+		"terminal.integrated.rendererType": "canvas"
 	},
 	"launch": {
 		"version": "0.2.0",
