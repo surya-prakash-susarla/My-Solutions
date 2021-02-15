@@ -1,1 +1,1 @@
-# vault of solutions.
+# Solution catalog.
