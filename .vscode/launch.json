@@ -8,11 +8,10 @@
             "name": "Run File",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceRoot}/a.exe",
-            "args": [],
+            "program": "${fileDirname}/a.exe",
             "cwd": "${workspaceFolder}",
-            "externalConsole": true,
-            "preLaunchTask": "Build C++ file"
+            "preLaunchTask": "Build C++ file",
+            "console": "integratedTerminal"
         }
     ]
 }

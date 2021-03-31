@@ -5,7 +5,8 @@
       "label": "Build C++ file",
       "command": "g++",
       "args": [
-        "${workspaceFolder}\\${fileBasename}"
+        "-g",
+        "${file}"
       ],
       "options": {
         "cwd": "${workspaceFolder}"
