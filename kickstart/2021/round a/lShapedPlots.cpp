@@ -80,11 +80,6 @@ llint __calc__() {
       if (input[i][j] == 0)
         continue;
 
-      // if (current.left > 1 and current.right > 1 and current.up > 1 and
-      //     current.down > 1) {
-      //   continue;
-      // }
-
       if ((current.left == 1 and current.right == 1) ||
           (current.up == 1 and current.down == 1)) {
         continue;

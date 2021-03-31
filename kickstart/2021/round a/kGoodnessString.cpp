@@ -9,7 +9,6 @@
 #include <utility>
 #include <vector>
 
-
 #define in scanf
 #define out printf
 

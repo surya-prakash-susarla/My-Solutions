@@ -5,10 +5,10 @@
 #include <map>
 #include <memory>
 #include <numeric>
+#include <set>
 #include <stack>
 #include <utility>
 #include <vector>
-#include <set>
 
 #define in scanf
 #define out printf
@@ -32,22 +32,11 @@ llint __calc__() {
       std::cin >> grid[i][j];
       height_store[grid[i][j]].insert({i, j});
     }
-  
-  // std::cout << "Done storing all the values : " << std::endl;
-  // for ( const std::pair<llint, std::set<pint>>& i : height_store ) {
-  //   std::cout << "Height : " << i.first << std::endl;
-  //   std::cout << "Locations : " << std::endl;
-  //   for ( const pint& j : i.second )
-  //     std::cout << j.first << " " << j.second << std::endl;
-  //   std::cout << std::endl;
-  // }
 
   llint answer = 0;
   for (auto it = height_store.rbegin(); it != height_store.rend(); it++) {
     const std::set<pint>& target_locations = it->second;
     const llint& current_height = it->first;
-
-    // std::cout << std::endl<<  "Currently processing height : " << current_height << std::endl;
 
     for (const pint& i : target_locations) {
       const llint& x = i.first;
@@ -57,9 +46,10 @@ llint __calc__() {
       if (grid[x][y] != current_height)
         continue;
 
-      auto update = [&grid, &height_store,
-                     &answer](const llint& x, const llint& y, const llint& parent_height ) {
-        if ( grid[x][y] >= parent_height )
+      auto update = [&grid, &height_store, &answer](
+                        const llint& x, const llint& y,
+                        const llint& parent_height) {
+        if (grid[x][y] >= parent_height)
           return;
 
         if (parent_height - grid[x][y] > 1) {
@@ -68,8 +58,6 @@ llint __calc__() {
           height_store[parent_height - 1].insert({x, y});
         }
       };
-
-      // std::cout << "values of x and y before lambda : " << x << " " << y << std::endl;
 
       // top
       if (x - 1 > -1)
