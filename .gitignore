@@ -16,3 +16,5 @@ temp.py
 eng_test
 rust/*
 *.pdb
+**/*.in
+**/*.txt
