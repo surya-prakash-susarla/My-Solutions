@@ -1,1 +1,1 @@
-# Solution catalog.
+# Solution store.
