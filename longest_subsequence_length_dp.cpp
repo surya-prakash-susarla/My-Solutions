@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 using namespace std;
-int** data;
+int **data;
 string a, b;
 int max(int a, int b) {
   if (a > b)
@@ -22,9 +22,9 @@ int ss(int ina, int inb) {
   }
   return 0;
 }
-int main(int argc, char const* argv[]) {
+int main(int argc, char const *argv[]) {
   cin >> a >> b;
-  data = new int*[a.size() + 1];
+  data = new int *[a.size() + 1];
   for (int i = 0; i < a.size() + 1; i++) {
     data[i] = new int[b.size() + 1];
     for (int j = 0; j < b.size() + 1; j++)
