@@ -24,7 +24,8 @@ def GetPartsFromString(source: str) -> List[str]:
     current_part = ""
     for c in source:
         if c.isupper() and not current_part.isupper():
-            parts.append(current_part)
+            if current_part:
+                parts.append(current_part)
             current_part = c
         else:
             current_part += c
