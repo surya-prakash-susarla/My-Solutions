@@ -20,17 +20,17 @@ def GetFilesInLocation(directory_path: str) -> List[Path]:
 
 
 def GetPartsFromString(source: str) -> List[str]:
-    parts=[]
+    parts = []
     current_part = ""
     for c in source:
-        if c.isupper():
+        if c.isupper() and not current_part.isupper():
             parts.append(current_part)
             current_part = c
         else:
             current_part += c
     parts.append(current_part)
-
     return parts
+
 
 def GetFormattedFileName(current_name: str) -> str:
     if current_name.find('_') != -1:
@@ -38,8 +38,8 @@ def GetFormattedFileName(current_name: str) -> str:
         return current_name
 
     parts: List[str] = GetPartsFromString(current_name)
-    print("Parts of {} => {}".format(current_name, parts))
-    return current_name
+    delimiter = "_"
+    return delimiter.join(parts)
 
 
 def GenerateTargetPath(path: Path) -> Path:
@@ -49,7 +49,7 @@ def GenerateTargetPath(path: Path) -> Path:
 
 def ModifyName(path: Path):
     new_path: Path = GenerateTargetPath(path)
-    # print("Renaming {} to {}".format(path, new_path))
+    print("Renaming {} to {}".format(path, new_path))
     path.rename(new_path)
 
 
