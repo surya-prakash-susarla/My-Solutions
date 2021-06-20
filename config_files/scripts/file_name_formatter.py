@@ -16,16 +16,15 @@ def GetFilesInLocation(directory_path: str) -> List[Path]:
     return file_list
 
 
-def GenerateTargetName(current_name: str) -> str:
-    return current_name
+def GenerateTargetPath(path: Path) -> Path:
+    updated_name: str = path.stem
+    return path.parent / (updated_name + path.suffix)
 
 
 def ModifyName(path: Path):
-    current_name: str = path.stem
-    target_name: str = GenerateTargetName(current_name)
-    print(" Renaming {} to {} ".format(
-        path.absolute(), path.parent / (target_name + path.suffix)))
-    path.rename(path.parent / target_name)
+    new_path: Path = GenerateTargetPath(path)
+    print("Renaming {} to {}".format(path, new_path))
+    path.rename(new_path)
 
 
 def main():
