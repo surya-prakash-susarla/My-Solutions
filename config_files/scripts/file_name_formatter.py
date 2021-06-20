@@ -31,7 +31,7 @@ def GetPartsFromString(source: str) -> List[str]:
         else:
             current_part += c
     parts.append(current_part)
-    parts = [part.lowercase() for part in parts]
+    parts = [part.lower() for part in parts]
     return parts
 
 
