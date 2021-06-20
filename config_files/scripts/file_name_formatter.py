@@ -25,7 +25,7 @@ def GetPartsFromString(source: str) -> List[str]:
     for c in source:
         if c.isupper() and not current_part.isupper() and (
                 len(current_part) != 0 and
-            (current_part[-1] != '(' or current_part[-1].isupper())):
+            (current_part[-1] != '(' or not current_part[-1].isupper())):
             if current_part:
                 parts.append(current_part)
             current_part = c
