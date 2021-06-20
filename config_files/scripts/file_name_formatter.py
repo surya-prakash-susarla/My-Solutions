@@ -2,9 +2,12 @@ try:
     import git
     import os.path as path
     from pathlib import Path
+    import re
     from typing import List
 except ImportError as error:
     print("Failed to import required modules: ", error)
+
+underscore_separated_pattern = re.compile(r'([^_]+){1,}(_){1,}([^_]*){1,}')
 
 
 def GetFilesInLocation(directory_path: str) -> List[Path]:
@@ -16,14 +19,37 @@ def GetFilesInLocation(directory_path: str) -> List[Path]:
     return file_list
 
 
+def GetPartsFromString(source: str) -> List[str]:
+    parts=[]
+    current_part = ""
+    for c in source:
+        if c.isupper():
+            parts.append(current_part)
+            current_part = c
+        else:
+            current_part += c
+    parts.append(current_part)
+
+    return parts
+
+def GetFormattedFileName(current_name: str) -> str:
+    if current_name.find('_') != -1:
+        print("{} matches target pattern.".format(current_name))
+        return current_name
+
+    parts: List[str] = GetPartsFromString(current_name)
+    print("Parts of {} => {}".format(current_name, parts))
+    return current_name
+
+
 def GenerateTargetPath(path: Path) -> Path:
-    updated_name: str = path.stem
+    updated_name: str = GetFormattedFileName(path.stem)
     return path.parent / (updated_name + path.suffix)
 
 
 def ModifyName(path: Path):
     new_path: Path = GenerateTargetPath(path)
-    print("Renaming {} to {}".format(path, new_path))
+    # print("Renaming {} to {}".format(path, new_path))
     path.rename(new_path)
 
 
