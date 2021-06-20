@@ -23,8 +23,8 @@ def GenerateTargetName(current_name: str) -> str:
 def ModifyName(path: Path):
     current_name: str = path.stem
     target_name: str = GenerateTargetName(current_name)
-    print(" Renaming {} to {} ".format(path.absolute(),
-                                       path.parent / target_name))
+    print(" Renaming {} to {} ".format(
+        path.absolute(), path.parent / (target_name + path.suffix)))
     path.rename(path.parent / target_name)
 
 
