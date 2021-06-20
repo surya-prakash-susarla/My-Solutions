@@ -31,6 +31,7 @@ def GetPartsFromString(source: str) -> List[str]:
         else:
             current_part += c
     parts.append(current_part)
+    parts = [part.lowercase() for part in parts]
     return parts
 
 
@@ -51,8 +52,11 @@ def GenerateTargetPath(path: Path) -> Path:
 
 def ModifyName(path: Path):
     new_path: Path = GenerateTargetPath(path)
-    print("Renaming {} to {}".format(path, new_path))
-    path.rename(new_path)
+    if new_path == path:
+        print("No changes needed for {}.".format(path))
+    else:
+        print("Renaming {} to {}".format(path, new_path))
+        path.rename(new_path)
 
 
 def main():
