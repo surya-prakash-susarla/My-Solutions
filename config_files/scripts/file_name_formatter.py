@@ -23,7 +23,8 @@ def GetPartsFromString(source: str) -> List[str]:
     parts = []
     current_part = ""
     for c in source:
-        if c.isupper() and not current_part.isupper():
+        if c.isupper() and not current_part.isupper() and (
+                len(current_part) != 0 and current_part[-1] != '('):
             if current_part:
                 parts.append(current_part)
             current_part = c
