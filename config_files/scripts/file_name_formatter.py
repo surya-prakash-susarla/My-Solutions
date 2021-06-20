@@ -37,7 +37,6 @@ def GetPartsFromString(source: str) -> List[str]:
 
 def GetFormattedFileName(current_name: str) -> str:
     if current_name.find('_') != -1:
-        print("{} matches target pattern.".format(current_name))
         return current_name
 
     parts: List[str] = GetPartsFromString(current_name)
