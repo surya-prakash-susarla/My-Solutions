@@ -7,7 +7,7 @@ try:
 except ImportError as error:
     print("Failed to import required modules: ", error)
 
-underscore_separated_pattern = re.compile(r'([^_]+){1,}(_){1,}([^_]*){1,}')
+files_changed: int = 0
 
 
 def GetFilesInLocation(directory_path: str) -> List[Path]:
@@ -51,11 +51,11 @@ def GenerateTargetPath(path: Path) -> Path:
 
 def ModifyName(path: Path):
     new_path: Path = GenerateTargetPath(path)
-    if new_path == path:
-        print("No changes needed for {}.".format(path))
-    else:
+    if new_path != path:
         print("Renaming {} to {}".format(path, new_path))
         path.rename(new_path)
+        global files_changed
+        files_changed += 1
 
 
 def main():
@@ -68,6 +68,9 @@ def main():
     print(len(file_list), " files found")
 
     file_list = [ModifyName(path) for path in file_list]
+
+    print("Updated names of {}/{} files.".format(files_changed,
+                                                 len(file_list)))
 
 
 main()
