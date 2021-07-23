@@ -80,7 +80,7 @@
 			"\tstd::ios_base::sync_with_stdio(false);",
 			"\tstd::cin.tie(nullptr);",
 			"\tllint t;",
-			"\tcin >> t;",
+			"\tstd::cin >> t;",
 			"\tfor(llint i=0;i<t;i++){",
 			"\t\t$0",
 			"\t}",
