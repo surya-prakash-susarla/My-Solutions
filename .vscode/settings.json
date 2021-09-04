@@ -3,5 +3,6 @@
         "iostream": "cpp"
     },
     "python.formatting.provider": "yapf",
-    "editor.fontSize": 18
+    "editor.fontSize": 18,
+    "C_Cpp.intelliSenseEngineFallback": "Enabled"
 }
