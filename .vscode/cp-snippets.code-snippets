@@ -112,6 +112,8 @@
 			"#define in scanf",
 			"#define out printf",
 			"",
+			"using namspace std;",
+			"",
 			"// Problem: ",
 			"",
 			"typedef long long int llint;",
