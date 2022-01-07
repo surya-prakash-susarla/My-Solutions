@@ -112,7 +112,7 @@
 			"#define in scanf",
 			"#define out printf",
 			"",
-			"using namspace std;",
+			"using namespace std;",
 			"",
 			"// Problem: ",
 			"",
