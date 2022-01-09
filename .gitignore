@@ -4,6 +4,7 @@ a.out
 sample_input.in
 sample_output.out
 **/temp*.cpp
+**/temp*.py
 sample_input_temp.in
 **/input*.in
 **/*.out
