@@ -19,3 +19,4 @@ rust/*
 *.pdb
 **/*.in
 **/*.txt
+**/current/**
