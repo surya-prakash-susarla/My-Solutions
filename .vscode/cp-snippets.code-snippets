@@ -108,6 +108,8 @@
 			"#include <set>",
 			"#include <unordered_map>",
 			"#include <tuple>",
+			"#include <optional>",
+			"#include <bitset>",
 			"",
 			"#define in scanf",
 			"#define out printf",

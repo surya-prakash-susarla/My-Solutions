@@ -25,7 +25,8 @@
                 "UNICODE",
                 "_UNICODE"
             ],
-            "intelliSenseMode": "msvc-x64"
+            "intelliSenseMode": "${default}",
+            "cppStandard": "gnu++20"
         }
     ],
     "version": 4
