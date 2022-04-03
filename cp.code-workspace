@@ -86,7 +86,8 @@
 			"queue": "cpp"
 		},
 		"workbench.panel.defaultLocation": "left",
-		"terminal.integrated.rendererType": "canvas"
+		"terminal.integrated.rendererType": "canvas",
+		"terminal.integrated.defaultProfile.windows": "PowerShell"
 	},
 	"launch": {
 		"version": "0.2.0",
