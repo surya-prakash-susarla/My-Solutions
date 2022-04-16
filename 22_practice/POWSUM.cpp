@@ -43,15 +43,15 @@ void __calc__() {
   for (llint i = 0; i < n; i++) {
     cin >> values[i];
     sum += values[i];
-    if ( values[i] < minval ) {
+    if (values[i] < minval) {
       minval = values[i];
-      minval_location = i ;
+      minval_location = i;
     }
   }
 
-  bitset<64> temp (sum) ; 
-  if ( temp.count() == 1 )  {
-    cout << 0 ;
+  bitset<64> temp(sum);
+  if (temp.count() == 1) {
+    cout << 0;
     return;
   }
 
@@ -61,7 +61,7 @@ void __calc__() {
 
   cout << 1 << endl;
   cout << 1 << " " << (diff / minval) + 1 << endl;
-  cout << minval_location+1 ;
+  cout << minval_location + 1;
 }
 
 int main() {

@@ -17,23 +17,24 @@ using namespace std;
 */
 
 class Solution {
-public:
-    int findUnsortedSubarray(vector<int>& nums) {
-        vector<int> input(nums);
-        sort(input.begin(), input.end());
-        
-        int left = 0 ;
-        for( ; left < input.size() ; left++ )
-            if ( input[left] != nums[left] )
-                break;
-        
-        if ( left == input.size()) return 0 ; 
-        
-        int right = input.size()-1 ;
-        for( ; right > -1 ; right-- )
-            if ( input[right] != nums[right] )
-                break;
-        
-        return (right - left) + 1 ;
-    }
+ public:
+  int findUnsortedSubarray(vector<int>& nums) {
+    vector<int> input(nums);
+    sort(input.begin(), input.end());
+
+    int left = 0;
+    for (; left < input.size(); left++)
+      if (input[left] != nums[left])
+        break;
+
+    if (left == input.size())
+      return 0;
+
+    int right = input.size() - 1;
+    for (; right > -1; right--)
+      if (input[right] != nums[right])
+        break;
+
+    return (right - left) + 1;
+  }
 };

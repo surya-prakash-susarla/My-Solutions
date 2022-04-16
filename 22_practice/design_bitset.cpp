@@ -2,66 +2,61 @@
 
 using namespace std;
 
-
-
 class Bitset {
-public:
-    Bitset(int size) {
-        bsize = size ;
+ public:
+  Bitset(int size) { bsize = size; }
+
+  void fix(int idx) {
+    if (is_following_set) {
+      values.insert(idx);
+    } else {
+      auto it = values.find(idx);
+      if (it != values.end())
+        values.erase(it);
     }
-    
-    void fix(int idx) {
-        if ( is_following_set ){
-            values.insert(idx);
-        } else {
-            auto it = values.find(idx);
-            if ( it != values.end() )
-                values.erase(it);
-        }
+  }
+
+  void unfix(int idx) {
+    if (!is_following_set) {
+      values.insert(idx);
+    } else {
+      auto it = values.find(idx);
+      if (it != values.end())
+        values.erase(it);
     }
-    
-    void unfix(int idx) {
-        if ( !is_following_set ){
-            values.insert(idx);
-        } else {
-            auto it = values.find(idx);
-            if ( it != values.end() )
-                values.erase(it);
-        }
+  }
+
+  void flip() { is_following_set = not is_following_set; }
+
+  bool all() {
+    return is_following_set ? values.size() == bsize : values.size() == 0;
+  }
+
+  bool one() {
+    return is_following_set ? values.size() > 0 : values.size() < bsize;
+  }
+
+  int count() {
+    return is_following_set ? values.size() : (bsize - values.size());
+  }
+
+  string toString() {
+    if (is_following_set) {
+      string answer(bsize, '0');
+      for (int i : values)
+        answer[i] = '1';
+      return answer;
+    } else {
+      string answer(bsize, '1');
+      for (int i : values)
+        answer[i] = '0';
+      return answer;
     }
-    
-    void flip() {
-        is_following_set = not is_following_set;
-    }
-    
-    bool all() {
-        return is_following_set ? values.size() == bsize : values.size() == 0;
-    }
-    
-    bool one() {
-        return is_following_set ? values.size() > 0 : values.size() < bsize ;
-    }
-    
-    int count() {
-        return is_following_set ? values.size() : (bsize - values.size());
-    }
-    
-    string toString() {
-        if (is_following_set) {
-            string answer ( bsize , '0' );
-            for ( int i : values )  answer[i] = '1';
-            return answer;
-        } else {
-            string answer ( bsize , '1' );
-            for ( int i : values )  answer[i] = '0';
-            return answer;
-        }
-    }
-    
-    
-    int bsize ;
-    bool is_following_set = true ;
-    unordered_set<int> values;
+  }
+
+  int bsize;
+  bool is_following_set = true;
+  unordered_set<int> values;
 };
 
 /**

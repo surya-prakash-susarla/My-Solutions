@@ -13,7 +13,7 @@ class Solution {
         indices.push_back(i);
     }
 
-    if (indices.size() < 2 or indices.size()%2 == 1)
+    if (indices.size() < 2 or indices.size() % 2 == 1)
       return 0;
     else if (indices.size() == 2)
       return 1;
