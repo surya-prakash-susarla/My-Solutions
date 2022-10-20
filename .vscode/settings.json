@@ -1,6 +1,7 @@
 {
     "files.associations": {
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "vector": "cpp"
     },
     "python.formatting.provider": "yapf",
     "editor.fontSize": 18,
