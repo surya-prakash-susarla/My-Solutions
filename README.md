@@ -1,5 +1,5 @@
-# Solution & script store.
+# Solution store.
 
-Active store for ongoing solutions.
+Active store for current work.
 
-Old py and java files ported over - 2015 and beyond
+### Use clang-format, follow naming convention and commit message rules before submission.
