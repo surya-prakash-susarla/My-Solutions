@@ -23,37 +23,34 @@ class Solution {
  public:
   bool __rec__(int i,
                int j,
-               int ii,
                vector<vector<char>>& values,
-               const string& input) {
-    if (ii >= input.size())
+               int index,
+               const string& word) {
+    if (index == word.size())
       return true;
-
     if (i < 0 or j < 0 or i >= values.size() or j >= values[0].size())
       return false;
 
-    if (values[i][j] == '@' or values[i][j] != input[ii])
-      return false;
-
-    ii++;
-    const char orig = values[i][j];
-    values[i][j] = '@';
-
-    bool result = __rec__(i + 1, j, ii, values, input) or
-                  __rec__(i, j + 1, ii, values, input) or
-                  __rec__(i - 1, j, ii, values, input) or
-                  __rec__(i, j - 1, ii, values, input);
-
-    values[i][j] = orig;
-
-    return result;
+    if (values[i][j] == word[index]) {
+      char orig = values[i][j];
+      values[i][j] = '@';
+      bool result = __rec__(i, j - 1, values, index + 1, word) or
+                    __rec__(i, j + 1, values, index + 1, word) or
+                    __rec__(i - 1, j, values, index + 1, word) or
+                    __rec__(i + 1, j, values, index + 1, word);
+      values[i][j] = orig;
+      return result;
+    }
+    return false;
   }
 
-  bool exist(vector<vector<char>>& values, string input) {
-    for (int i = 0; i < values.size(); i++)
-      for (int j = 0; j < values[0].size(); j++)
-        if (__rec__(i, j, 0, values, input))
+  bool exist(vector<vector<char>>& board, string word) {
+    for (int i = 0; i < board.size(); i++) {
+      for (int j = 0; j < board[i].size(); j++) {
+        if (__rec__(i, j, board, 0, word))
           return true;
+      }
+    }
     return false;
   }
 };
