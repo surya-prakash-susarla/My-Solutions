@@ -22,21 +22,18 @@ using namespace std;
 class Solution {
  public:
   int firstMissingPositive(vector<int>& values) {
-    set<int> temp;
-    for (int i : values)
-      if (i > 0)
-        temp.insert(i);
-
-    if (temp.size() == 0 or *temp.begin() > 1)
-      return 1;
-
-    for (auto it = next(temp.begin()); it != temp.end(); it = next(it)) {
-      auto it2 = prev(it);
-      if (*it - *it2 > 1)
-        return *it2 + 1;
+    for (int i = 0; i < values.size(); i++) {
+      if (values[i] <= 0 or values[i] > values.size())
+        continue;
+      if (values[values[i] - 1] != values[i]) {
+        swap(values[values[i] - 1], values[i]);
+        i--;
+      }
     }
-
-    return *temp.rbegin() + 1;
+    for (int i = 0; i < values.size(); i++)
+      if (values[i] != i + 1)
+        return i + 1;
+    return values.size() + 1;
   }
 };
 
