@@ -20,25 +20,25 @@ typedef long long unsigned int ullint;
 using namespace std;
 
 class Solution {
- public:
-  int maxArea(vector<int>& values) {
-    int prevbest = -1;
-    int answer = -1;
+public:
+    int maxArea(vector<int>& values) {
+        int left = 0;
+        int right = values.size()-1;
 
-    for (int i = 0; i < values.size(); i++) {
-      if (values[i] < prevbest)
-        continue;
-      prevbest = values[i];
+        int answer = INT_MIN;
 
-      int currentbest = -1;
-      for (int j = values.size() - 1; j > i; j--)
-        currentbest = max(currentbest, (j - i) * min(values[i], values[j]));
+        while ( left < right ) {
+            int current = min(values[left], values[right]) * (right - left);
+            answer = max(answer, current);
 
-      answer = max(answer, currentbest);
+            if ( values[left] < values[right] )
+                left++;
+            else
+                right--;
+        }
+
+        return answer;
     }
-
-    return answer;
-  }
 };
 
 int main() {
