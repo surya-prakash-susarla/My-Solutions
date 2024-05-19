@@ -20,13 +20,19 @@ typedef long long unsigned int ullint;
 using namespace std;
 
 class Solution {
- public:
-  bool isPalindrome(int x) {
-    string orig = to_string(x);
-    string temp = orig;
-    reverse(temp.begin(), temp.end());
-    return temp == orig;
-  }
+public:
+    bool isPalindrome(int x) {
+        if ( x < 0 )
+            return false;
+        if ( x == 0 )
+            return true;
+        
+        long long int rev = 0;
+        for ( int i = x , tp = floor(log10(x)) ; i ; i/=10, tp-- )
+            rev += (i%10) * pow(10, tp);
+
+        return rev == x;
+    }
 };
 
 int main() {
