@@ -37,24 +37,23 @@ class Solution {
 
   int answer = 0;
 
-  void __calc__(node* root, int existing) {
-    if (root == nullptr) {
-      answer += existing;
+  void __rec__(node* root, int prev) {
+    int current = (prev * 10) + root->val;
+    if (not root->left and not root->right) {
+      answer += current;
       return;
     }
-
-    if (not root->left and not root->right)
-      return __calc__(nullptr, existing * 10 + root->val);
-
     if (root->left)
-      __calc__(root->left, existing * 10 + root->val);
+      __rec__(root->left, current);
 
     if (root->right)
-      __calc__(root->right, existing * 10 + root->val);
+      __rec__(root->right, current);
   }
 
   int sumNumbers(TreeNode* root) {
-    __calc__(root, 0);
+    if (not root)
+      return 0;
+    __rec__(root, 0);
     return answer;
   }
 };
