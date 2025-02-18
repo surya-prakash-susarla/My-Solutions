@@ -21,52 +21,51 @@ using namespace std;
 
 class Solution {
  public:
-  vector<int> parents;
-
-  int find(int i) {
-    if (parents[i] == -1)
-      return i;
-    else
-      return find(parents[i]);
-  }
-
   vector<vector<string>> accountsMerge(vector<vector<string>>& accounts) {
-    map<string, vector<int>> emails;
+    map<string, int> email_mapping;
 
     for (int i = 0; i < accounts.size(); i++) {
+      set<int> matching_ind;
       for (int j = 1; j < accounts[i].size(); j++) {
-        emails[accounts[i][j]].push_back(i);
+        auto it = email_mapping.find(accounts[i][j]);
+        if (it != email_mapping.end()) {
+          matching_ind.insert(it->second);
+        }
+      }
+      if (matching_ind.empty()) {
+        // cout << "no matching indices for base index : " << i << endl;
+        for (int j = 1; j < accounts[i].size(); j++) {
+          email_mapping[accounts[i][j]] = i;
+        }
+      } else {
+        // cout << "for base index : " << i << ", matching indices" << endl;
+        // for ( auto k : matching_ind )   cout << k << " ";
+        // cout << endl;
+
+        int merged_ind = *matching_ind.begin();
+        for (auto k = email_mapping.begin(); k != email_mapping.end();
+             k = next(k)) {
+          if (matching_ind.contains(k->second))
+            k->second = merged_ind;
+        }
+        for (int j = 1; j < accounts[i].size(); j++) {
+          email_mapping[accounts[i][j]] = merged_ind;
+        }
       }
     }
 
-    parents = vector<int>(accounts.size(), -1);
-
-    auto merge = [&](const vector<int>& values) {
-      const int main = find(values[0]);
-
-      for (int i = 1; i < values.size(); i++) {
-        int cp = find(values[i]);
-        if (cp != main)
-          parents[cp] = main;
-      }
-    };
-
-    for (auto i : emails)
-      merge(i.second);
-
-    map<int, set<string>> temp;
-
-    for (auto i : emails) {
-      int ind = find(i.second[0]);
-      temp[ind].insert(i.first);
-    }
+    map<int, set<string>> merged_list;
+    for (auto i : email_mapping)
+      merged_list[i.second].insert(i.first);
 
     vector<vector<string>> answer;
-    for (auto i : temp) {
-      vector<string> temp2;
-      temp2.emplace_back(accounts[i.first][0]);
-      temp2.insert(temp2.end(), i.second.begin(), i.second.end());
-      answer.emplace_back(temp2);
+    for (auto i : merged_list) {
+      vector<string> current;
+      current.emplace_back(accounts[i.first][0]);
+      for (auto j : i.second)
+        current.emplace_back(j);
+
+      answer.emplace_back(current);
     }
 
     return answer;
