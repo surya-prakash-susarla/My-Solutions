@@ -33,56 +33,58 @@ using namespace std;
  */
 class Solution {
  public:
-  typedef TreeNode node;
-
   bool isCompleteTree(TreeNode* root) {
-    if (root == nullptr)
+    typedef TreeNode node;
+
+    if (not root)
       return true;
 
-    queue<node*> values;
-    values.push(root);
+    int level = 0;
+    queue<node*> current;
 
-    while (not values.empty()) {
+    current.push(root);
+
+    auto is_terminal_level = [](queue<node*>& current) -> bool {
+      for (; not current.empty(); current.pop()) {
+        node* top = current.front();
+        if (top->left or top->right)
+          return false;
+      }
+      return true;
+    };
+
+    while (not current.empty()) {
+      if (current.size() != pow(2, level)) {
+        return is_terminal_level(current);
+      }
+
       queue<node*> next;
+      bool can_have_children = true;
+      for (; not current.empty(); current.pop()) {
+        node* top = current.front();
+        if (not top->left and not top->right) {
+          can_have_children = false;
+          continue;
+        }
 
-      bool is_broken_node_found = false;
-      while (not values.empty()) {
-        node* current = values.front();
-        values.pop();
+        if (not can_have_children) {
+          return false;
+        }
 
-        if (is_broken_node_found) {
-          if (current->left or current->right)
-            return false;
+        if (not top->left) {
+          return false;
+        } else if (not top->right) {
+          next.push(top->left);
+          can_have_children = false;
         } else {
-          if (current->left) {
-            next.push(current->left);
-          } else {
-            is_broken_node_found = true;
-          }
-
-          if (is_broken_node_found and current->right) {
-            return false;
-          }
-
-          if (current->right) {
-            next.push(current->right);
-          } else {
-            is_broken_node_found = true;
-          }
+          // both children exist.
+          next.push(top->left);
+          next.push(top->right);
         }
       }
 
-      if (is_broken_node_found) {
-        while (not next.empty()) {
-          node* current = next.front();
-          next.pop();
-          if (current->left or current->right)
-            return false;
-        }
-        return true;
-      }
-
-      swap(values, next);
+      swap(current, next);
+      level++;
     }
 
     return true;
