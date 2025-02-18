@@ -21,34 +21,25 @@ using namespace std;
 
 class Solution {
  public:
-  int minMeetingRooms(vector<vector<int>>& intervals) {
+  int minMeetingRooms(vector<vector<int>>& input) {
     typedef vector<int> vint;
     typedef vector<vint> vvint;
 
-    sort(intervals.begin(), intervals.end(), [](const vint& a, const vint& b) {
+    sort(input.begin(), input.end(), [](const vint& a, const vint& b) {
       if (a[0] == b[0])
         return a[1] < b[1];
       return a[0] < b[0];
     });
 
+    priority_queue<int, vint, greater<int>> values;
+
     int answer = 0;
-    priority_queue<int, vector<int>, greater<int>> booked_rooms;
 
-    for (int i = 0; i < intervals.size(); i++) {
-      // cout << "current interval : " << intervals[i][0] << " , " <<
-      // intervals[i][1] << endl;
-
-      // prune rooms that were vacated before current instant;
-      while (not booked_rooms.empty() and
-             booked_rooms.top() <= intervals[i][0]) {
-        // cout << "popping room booked at instant : " << booked_rooms.top() <<
-        // endl;
-        booked_rooms.pop();
-      }
-
-      booked_rooms.push(intervals[i][1]);
-
-      answer = max(answer, (int)booked_rooms.size());
+    for (const vint& i : input) {
+      for (; not values.empty() and values.top() <= i[0]; values.pop())
+        ;
+      values.push(i[1]);
+      answer = max(answer, (int)values.size());
     }
 
     return answer;
