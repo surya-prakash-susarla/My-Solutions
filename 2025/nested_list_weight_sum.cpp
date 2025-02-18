@@ -52,20 +52,21 @@ using namespace std;
  */
 class Solution {
  public:
-  int calc(const vector<NestedInteger>& values, int depth) {
+  int solve(const vector<NestedInteger>& input, int depth) {
     int answer = 0;
-    for (int i = 0; i < values.size(); i++) {
-      if (values[i].isInteger()) {
-        answer += (values[i].getInteger() * depth);
+    for (auto i : input) {
+      if (i.isInteger()) {
+        answer += (i.getInteger() * depth);
       } else {
-        answer += calc(values[i].getList(), depth + 1);
+        answer += solve(i.getList(), depth + 1);
       }
     }
-
     return answer;
   }
 
-  int depthSum(vector<NestedInteger>& input) { return calc(input, 1); }
+  int depthSum(vector<NestedInteger>& nestedList) {
+    return solve(nestedList, 1);
+  }
 };
 
 int main() {
