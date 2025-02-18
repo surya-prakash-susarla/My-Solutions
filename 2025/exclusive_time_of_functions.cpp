@@ -21,56 +21,69 @@ using namespace std;
 
 class Solution {
  public:
-  typedef struct {
-    int function_id;
-    string action;
-    int timestamp;
+  typedef struct _call {
+    int id;
+    int type;
+    int time;
     int other_time;
-  } logline;
 
-  logline parse(const string& input) {
-    const int first_sep = input.find(':');
+    void print() const {
+      cout << "id : " << id << " , type : " << type << " , time : " << time
+           << " ,  ot : " << other_time << endl;
+    }
+  } call;
 
-    logline value;
-    const string function_id = input.substr(0, first_sep);
-    // cout << "function id : " << function_id << endl;
-    value.function_id = stoi(function_id);
+  call parse(const string& input) {
+    int ind = input.find(':');
+    string id = input.substr(0, ind);
+    int second_ind = input.find(':', ind + 1);
+    string type = input.substr(ind + 1, second_ind - ind - 1);
+    string time = input.substr(second_ind + 1, input.size());
 
-    const int second_sep = input.find(':', first_sep + 1);
-    const string action =
-        input.substr(first_sep + 1, second_sep - first_sep - 1);
-    // cout << "action : " << action << endl;
-    value.action = action;
+    // cout << "line : " << input << endl;
+    // cout << "call -> id : " << id << " , type : " << type << " , time : " <<
+    // time << endl;
 
-    const string timestamp = input.substr(second_sep + 1);
-    // cout << "timestamp : " << timestamp << endl;
-    value.timestamp = stoi(timestamp);
-
-    return value;
+    call temp;
+    temp.id = stoi(id);
+    temp.type = (type == "start" ? 0 : 1);
+    temp.time = stoi(time);
+    temp.other_time = 0;
+    return temp;
   }
 
   vector<int> exclusiveTime(int n, vector<string>& logs) {
-    stack<logline> values;
+    vector<call> values;
+    for (const string& i : logs)
+      values.emplace_back(parse(i));
 
     vector<int> answer(n, 0);
+    stack<call> calls;
 
-    for (const string& i : logs) {
-      logline current = parse(i);
-      if (current.action == "start") {
-        values.push(current);
+    // cout << "starting stack functions" << endl;
+
+    for (const call& i : values) {
+      // cout << "current call : " << endl;
+      // i.print();
+      if (i.type == 1) {
+        // cout << "processing removal" << endl;
+
+        call top = calls.top();
+        calls.pop();
+
+        // cout << "top : " << endl;
+        // top.print();
+
+        int time = i.time - top.time + 1;
+        if (not calls.empty())
+          calls.top().other_time += time;
+        time -= top.other_time;
+
+        // cout << "total calc time for current function : " << time << endl;
+
+        answer[i.id] += time;
       } else {
-        logline prev = values.top();
-        values.pop();
-        int time = (current.timestamp - prev.timestamp + 1 - prev.other_time);
-
-        answer[current.function_id] += time;
-
-        if (not values.empty()) {
-          logline earlier_exe = values.top();
-          values.pop();
-          earlier_exe.other_time += (time + prev.other_time);
-          values.push(earlier_exe);
-        }
+        calls.push(i);
       }
     }
 
