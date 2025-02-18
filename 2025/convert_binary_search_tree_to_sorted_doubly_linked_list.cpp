@@ -47,40 +47,36 @@ class Solution {
  public:
   typedef Node node;
 
-  pair<node*, node*> __rec__(node* root) {
-    node* left_end = nullptr;
+  pair<node*, node*> trav(node* root) {
+    if (root == nullptr)
+      return {nullptr, nullptr};
+
+    pair<node*, node*> answer = {root, root};
+
     if (root->left) {
-      pair<node*, node*> left = __rec__(root->left);
-      left_end = left.first;
+      pair<node*, node*> left = trav(root->left);
+      answer.first = left.first;
       left.second->right = root;
       root->left = left.second;
-    } else {
-      left_end = root;
     }
-
-    node* right_end = nullptr;
     if (root->right) {
-      pair<node*, node*> right = __rec__(root->right);
-      right_end = right.second;
+      pair<node*, node*> right = trav(root->right);
+      answer.second = right.second;
       right.first->left = root;
       root->right = right.first;
-    } else {
-      right_end = root;
     }
 
-    return {left_end, right_end};
+    return answer;
   }
 
   Node* treeToDoublyList(Node* root) {
-    if (root == nullptr)
+    if (not root)
       return nullptr;
 
-    pair<node*, node*> ends = __rec__(root);
-
-    ends.first->left = ends.second;
-    ends.second->right = ends.first;
-
-    return ends.first;
+    pair<node*, node*> answer = trav(root);
+    answer.first->left = answer.second;
+    answer.second->right = answer.first;
+    return answer.first;
   }
 };
 
