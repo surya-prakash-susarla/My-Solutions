@@ -30,57 +30,68 @@ using namespace std;
  */
 class Solution {
  public:
-  vector<int> answer;
-
+  typedef vector<int> vint;
   typedef TreeNode node;
 
-  void __down_rec__(node* root, int depth) {
-    if (root == nullptr)
-      return;
-    if (depth == 0) {
-      answer.push_back(root->val);
-      return;
-    } else {
-      __down_rec__(root->left, depth - 1);
-      __down_rec__(root->right, depth - 1);
+  node* target;
+  int k;
+
+  vint answer;
+
+  int __rec__(node* root) {
+    if (not root)
+      return -1;
+
+    if (root == target)
+      return k - 1;
+
+    int dist = __rec__(root->left);
+    if (dist != -1) {
+      if (dist == 0) {
+        answer.push_back(root->val);
+        return -1;
+      } else {
+        insert_at_distance(root->right, dist - 1);
+        return dist - 1;
+      }
     }
+
+    dist = __rec__(root->right);
+    if (dist != -1) {
+      if (dist == 0) {
+        answer.push_back(root->val);
+        return -1;
+      } else {
+        insert_at_distance(root->left, dist - 1);
+        return dist - 1;
+      }
+    }
+
+    return -1;
   }
 
-  int __up_rec__(node* root, const node* target, const int depth) {
-    if (root == nullptr)
-      return INT_MAX;
+  void insert_at_distance(node* root, int dist) {
+    if (not root)
+      return;
 
-    if (root == target) {
-      return 1;
+    if (dist < 0)
+      return;
+
+    if (dist == 0) {
+      answer.push_back(root->val);
+      return;
     }
 
-    const int ld = __up_rec__(root->left, target, depth);
-    if (ld != INT_MAX) {
-      if (ld == depth) {
-        answer.push_back(root->val);
-        return INT_MAX;
-      } else {
-        __down_rec__(root->right, depth - ld - 1);
-        return ld + 1;
-      }
-    }
-
-    const int rd = __up_rec__(root->right, target, depth);
-    if (rd != INT_MAX) {
-      if (rd == depth) {
-        answer.push_back(root->val);
-        return INT_MAX;
-      } else {
-        __down_rec__(root->left, depth - rd - 1);
-        return rd + 1;
-      }
-    }
-    return INT_MAX;
+    insert_at_distance(root->left, dist - 1);
+    insert_at_distance(root->right, dist - 1);
+    return;
   }
 
   vector<int> distanceK(TreeNode* root, TreeNode* target, int k) {
-    __down_rec__(target, k);
-    __up_rec__(root, target, k);
+    insert_at_distance(target, k);
+    this->target = target;
+    this->k = k;
+    __rec__(root);
     return answer;
   }
 };
