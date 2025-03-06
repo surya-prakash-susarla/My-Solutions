@@ -22,39 +22,33 @@ using namespace std;
 class Solution {
  public:
   string minRemoveToMakeValid(string s) {
-    stack<pair<char, int>> values;
-    string answer;
+    stack<int> locations;
+    vector<int> remove;
     for (int i = 0; i < s.size(); i++) {
-      switch (s[i]) {
-        case '(': {
-          answer += s[i];
-          values.push({s[i], answer.size() - 1});
-          break;
-        }
-        case ')': {
-          if (not values.empty()) {
-            values.pop();
-            answer += s[i];
-          }
-          break;
-        }
-        default: {
-          answer += s[i];
+      if (s[i] == '(') {
+        locations.push(i);
+      } else if (s[i] == ')') {
+        if (not locations.empty()) {
+          locations.pop();
+        } else {
+          remove.push_back(i);
         }
       }
     }
-
-    while (not values.empty()) {
-      answer[values.top().second] = '@';
-      values.pop();
+    while (not locations.empty()) {
+      remove.push_back(locations.top());
+      locations.pop();
     }
 
-    string return_value;
-    for (char c : answer)
-      if (c != '@')
-        return_value += c;
+    for (int i : remove)
+      s[i] = '@';
 
-    return return_value;
+    string answer;
+    for (char c : s)
+      if (c != '@')
+        answer += c;
+
+    return answer;
   }
 };
 
