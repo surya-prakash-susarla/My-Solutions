@@ -21,21 +21,20 @@ using namespace std;
 
 class Solution {
  public:
-  string customSortString(string target, string input) {
-    map<char, int> counts;
-    for (char c : input)
+  string customSortString(string order, string s) {
+    unordered_map<char, int> counts;
+    for (char c : s) {
       counts[c]++;
+    }
 
     string answer;
-    for (char c : target) {
-      if (counts[c]) {
-        answer += string(counts[c], c);
-        counts[c] = 0;
-      }
+    for (char c : order) {
+      answer += string(counts[c], c);
+      counts[c] = 0;
     }
 
     for (auto i : counts)
-      if (i.second)
+      if (i.second != 0)
         answer += string(i.second, i.first);
 
     return answer;
