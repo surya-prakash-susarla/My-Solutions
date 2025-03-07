@@ -33,17 +33,30 @@ using namespace std;
  */
 class Solution {
  public:
+  int answer = 0;
+  int low;
+  int high;
+
+  typedef TreeNode node;
+
+  void __rec__(node* root) {
+    if (not root)
+      return;
+
+    __rec__(root->left);
+    __rec__(root->right);
+
+    if (root->val > high or root->val < low)
+      return;
+
+    answer += root->val;
+  }
+
   int rangeSumBST(TreeNode* root, int low, int high) {
-    if (root == nullptr)
-      return 0;
+    this->low = low;
+    this->high = high;
 
-    int answer = 0;
-    if (root->val >= low and root->val <= high)
-      answer += root->val;
-
-    answer += rangeSumBST(root->left, low, high);
-    answer += rangeSumBST(root->right, low, high);
-
+    __rec__(root);
     return answer;
   }
 };
