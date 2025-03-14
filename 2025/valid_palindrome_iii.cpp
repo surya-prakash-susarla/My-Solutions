@@ -21,31 +21,36 @@ using namespace std;
 
 class Solution {
  public:
-  unordered_map<int, unordered_map<int, unordered_map<int, bool>>> memo;
+  string input;
 
-  bool __rec__(int l, int r, int k, const string& s) {
-    if (l >= r)
+  map<tuple<int, int, int>, bool> memo;
+
+  bool is_valid(int i, int j, int k) {
+    if (i > j)
       return true;
 
-    {
-      auto it = memo[l][r].find(k);
-      if (it != memo[l][r].end())
-        return it->second;
-    }
+    if (k < 0)
+      return false;
+
+    tuple<int, int, int> current = make_tuple(i, j, k);
+    auto it = memo.find(current);
+    if (it != memo.end())
+      return it->second;
 
     bool answer = false;
-    if (s[l] == s[r]) {
-      answer = __rec__(l + 1, r - 1, k, s);
-    } else if (k > 0) {
-      answer = __rec__(l + 1, r, k - 1, s) or __rec__(l, r - 1, k - 1, s);
+    if (input[i] == input[j]) {
+      answer = is_valid(i + 1, j - 1, k);
+    } else {
+      answer = is_valid(i + 1, j, k - 1) or is_valid(i, j - 1, k - 1);
     }
 
-    memo[l][r][k] = answer;
+    memo[current] = answer;
     return answer;
   }
 
   bool isValidPalindrome(string s, int k) {
-    return __rec__(0, s.size() - 1, k, s);
+    input = s;
+    return is_valid(0, s.size() - 1, k);
   }
 };
 
